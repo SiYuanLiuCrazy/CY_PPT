@@ -1,0 +1,23 @@
+<!-- upload/templates/upload/upload.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload file</title>
+</head>
+<body>
+    <h1>Upload file</h1>
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}!</p>
+        <p><a href="{% url 'logout' %}">Logout</a></p>
+    {% else %}
+        <p><a href="{% url 'login' %}">Login</a></p>
+        <p><a href="{% url 'signup' %}">Sign Up</a></p>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>
